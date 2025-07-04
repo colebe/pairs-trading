@@ -38,7 +38,7 @@ pip install -e .
 ### Command Line
 If installed locally:
 ```bash
-pairs-trader --traindates 2020-01-01 2021-01-01 --testdates 2023-01-01 2023-07-01 --traininterval 1d --testinterval 1d```
+pairs-trader --traindates 2020-01-01 2021-01-01 --testdates 2023-01-01 2023-07-01 --traininterval 1d --testinterval 1d
 ```
 Otherwise, run with Python directly:
 ```bash
