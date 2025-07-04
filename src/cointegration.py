@@ -1,5 +1,6 @@
 import numpy as np
 from statsmodels.tsa.stattools import adfuller
+
 def engle_granger(series1, series2):
     """
     Perform the Engle-Granger cointegration test on two time series.
@@ -24,4 +25,4 @@ def engle_granger(series1, series2):
     p_value = adf_result[1]
     critical_values = adf_result[4]
     
-    return adf_statistic, p_value, critical_values
+    return adf_statistic, p_value, critical_values, beta_hat[1]  # Return beta_hat as well for further use in main
