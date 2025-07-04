@@ -25,9 +25,22 @@ The backtester can account for trading costs including slippage and fees, and tr
 The strategy supports both daily (`1d`) and intraday (`1m`) intervals. Backtests can be run separately for training and testing periods to reduce lookahead bias.
 
 
-## Example Usage
-The main program must be run with commandline arguments. For example, 
-
+## How to Use
+### Installation
+Install required packages using pip
+```bash
+pip install -r requirements.txt
+```
+Or install locally for CLI support
+```bash
+pip install -e .
+```
+### Command Line
+If installed locally:
+```bash
+pairs-trader --traindates 2020-01-01 2021-01-01 --testdates 2023-01-01 2023-07-01 --traininterval 1d --testinterval 1d```
+```
+Otherwise, run with Python directly:
 ```bash
 python main.py --traindates 2018-01-01 2020-12-31 --testdates 2023-01-01 2025-07-01 --traininterval 1d --testinterval 1d
 ```
