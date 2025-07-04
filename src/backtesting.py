@@ -142,10 +142,12 @@ def simulate_trading(signals, close, symbol1, symbol2, beta, slippage=0.0005, fe
     results = signals.copy()
     results['equity'] = pd.Series(equity_curve, index=signals.index[:len(equity_curve)])
     results['equity'] = results['equity'].ffill()
-    results['returns'] = results['equity'].diff().fillna(0)
+    initial_capital = 1.0
+    results['equity'] = initial_capital + results['equity']
+    results['returns'] = results['equity'].pct_change().fillna(0)
 
     trades_df = pd.DataFrame(trade_pnls)
-    sharpe = sharpe_ratio(results['returns'], periods_per_year=periods_per_year)
+    sharpe = sharpe_ratio(results['returns'], periods_per_year=periods_per_year, risk_free_rate=0.0)
     drawdown = max_drawdown(results['equity'])
 
     performance = {
