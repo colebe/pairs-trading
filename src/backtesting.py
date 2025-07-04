@@ -84,17 +84,6 @@ def simulate_trading(signals, close, symbol1, symbol2, beta, slippage=0.0005, fe
         '1m': 252 * 390,  # 390 minutes/day
     }.get(interval, 252)
 
-    # Determine rolling window size for z-score
-    zscore_window = {
-        '1d': 60,
-        '1h': 130,
-        '1m': 390,  # 1 trading day worth of 1m data
-    }.get(interval, 60)
-
-    # Recalculate z-score with adjusted window
-    spread = np.log(close[symbol1]) - beta * np.log(close[symbol2])
-    signals = backtest(spread, zscore_window=zscore_window)
-
     in_trade = False
     entry_type = None
     entry_price_x = entry_price_y = 0
