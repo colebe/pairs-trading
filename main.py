@@ -50,8 +50,9 @@ def main():
         if result[1] < 0.05:
             # Try except since some pairs may not have enough data in the test period
             try:
-                spread = np.log(test_data[ticker1]) - np.log(test_data[ticker2])
-                signals = backtest(spread)
+                beta = beta_values[(ticker1, ticker2)]
+                spread = np.log(test_data[ticker2]) - beta * np.log(test_data[ticker1])
+                signals = backtest(spread, zscore_window=20, entry_threshold=1.25, exit_threshold=0.25)
                 backtest_results[(ticker1, ticker2)] = signals
             except KeyError as e:
                 print(f"Data for {ticker1} or {ticker2} not available in test period: {e}")
