@@ -12,6 +12,7 @@ The program starts by creating a list of viable pairs. To do this, I used Princi
 
 After creating the list of viable pairs, the program runs the Engle-Granger test for cointegration on each pair. All pairs with a p-value (chance of the time series behaving as it has purely by chance, given no cointegration) below the given threshold (I use .01) are selected as the most viable pairs.
 
+
 ### Backtesting
 
 Each cointegrated pair is evaluated using a simple mean-reversion strategy based on the z-score of the price spread. Entry signals are generated when the z-score crosses predefined thresholds (e.g., ±2.0), and positions are closed when the spread reverts toward the mean (e.g. z between -0.5 and 0.5).
@@ -23,7 +24,17 @@ The backtester can account for trading costs including slippage and fees, and tr
 - Number of Trades
 
 The strategy supports both daily (`1d`) and intraday (`1m`) intervals. Backtests can be run separately for training and testing periods to reduce lookahead bias.
+## Sample Output
 
+### Spread and Trading Signals
+![Spread and signals](images/backtesting_example.png)
+
+The figure above shows the spread between UAL and DAL over a single trading day, along with long and short entry signals based on z-score thresholds, and exit signals when the spread reverts toward the mean.
+
+### Cointegration Visual
+![Cointegration mean reversion](images/pair_selection_example.png)
+
+This second plot shows the spread between UNP and NSC, with the Engle-Granger p-value displayed in the title, and the mean spread plotted for reference. It demonstrates clear mean-reverting behavior indicative of cointegration.
 
 ## How to Use
 ### Installation
